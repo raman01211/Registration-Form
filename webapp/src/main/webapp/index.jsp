@@ -45,7 +45,7 @@ input[type=submit], input[type=reset]{
 <body>
 <h2>Student Registration Form Using Table in HTML</h3>
 <table align="center" cellpadding = "10">
-<!--------------------- First Name ------------------------------------------>
+<!--------------------- First Name ------------------------------------------->
 <tr>
 <td>First Name</td>
 <td><input type="text" name="FirstName" maxlength="50" placeholder="Cloud Gen Softech Systems" />
