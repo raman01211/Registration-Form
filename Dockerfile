@@ -1,7 +1,13 @@
-# Pull base image 
-From tomcat:8-jre8
+FROM maven:3.8-openjdk-8-slim AS build
+WORKDIR /app
+COPY pom.xml .
+COPY server/pom.xml server/
+COPY webapp/pom.xml webapp/
+COPY server/src server/src
+COPY webapp/src webapp/src
+RUN mvn clean package -DskipTests
 
-# Maintainer 
-MAINTAINER "support@gmail.com" 
-COPY ./webapp.war /usr/local/tomcat/webapps
-
+FROM tomcat:8-jre8
+COPY --from=build /app/webapp/target/*.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
